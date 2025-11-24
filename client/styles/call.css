@@ -1,0 +1,268 @@
+button:ho
+ver {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
+}
+
+.call-button:active {
+  transform: translateY(0);
+}
+
+/* Incoming Call Modal */
+.call-modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10000;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(5px);
+}
+
+.modal-content {
+  position: relative;
+  background: white;
+  border-radius: 20px;
+  padding: 2rem;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+  max-width: 400px;
+  width: 90%;
+  animation: modalSlideIn 0.3s ease-out;
+}
+
+@keyframes modalSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.caller-info {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.caller-avatar {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+}
+
+.caller-name {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 0.5rem;
+}
+
+.call-status {
+  color: #666;
+  font-size: 1rem;
+}
+
+.call-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.accept-call-btn,
+.reject-call-btn {
+  flex: 1;
+  padding: 1rem;
+  border: none;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.accept-call-btn {
+  background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+  color: white;
+}
+
+.accept-call-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
+}
+
+.reject-call-btn {
+  background: linear-gradient(135deg, #f44336 0%, #d32f2f 100%);
+  color: white;
+}
+
+.reject-call-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(244, 67, 54, 0.3);
+}
+
+/* Active Call Screen */
+.call-screen {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  z-index: 9999;
+  flex-direction: column;
+  animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.call-header {
+  padding: 2rem;
+  text-align: center;
+  color: white;
+}
+
+.call-peer-name {
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.call-timer {
+  font-size: 1.2rem;
+  opacity: 0.9;
+  margin-bottom: 0.5rem;
+}
+
+#call-status {
+  font-size: 1rem;
+  opacity: 0.8;
+}
+
+/* Screen Share Container */
+.screen-share-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  position: relative;
+}
+
+#screen-share-video {
+  max-width: 90%;
+  max-height: 70vh;
+  border-radius: 12px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+  background: #000;
+}
+
+.screen-share-label {
+  position: absolute;
+  bottom: 3rem;
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.9rem;
+}
+
+/* Call Controls */
+.call-controls {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  padding: 2rem;
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.control-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(255, 255, 255, 0.2);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  color: white;
+  padding: 1rem 1.5rem;
+  border-radius: 16px;
+  cursor: pointer;
+  transition: all 0.3s;
+  backdrop-filter: blur(10px);
+}
+
+.control-btn:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
+}
+
+.control-btn.active {
+  background: rgba(76, 175, 80, 0.3);
+  border-color: rgba(76, 175, 80, 0.5);
+}
+
+.btn-icon {
+  font-size: 1.5rem;
+}
+
+.btn-label {
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.end-call-btn {
+  background: rgba(244, 67, 54, 0.3);
+  border-color: rgba(244, 67, 54, 0.5);
+}
+
+.end-call-btn:hover {
+  background: rgba(244, 67, 54, 0.5);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .call-controls {
+    gap: 1rem;
+  }
+  
+  .control-btn {
+    padding: 0.8rem 1rem;
+  }
+  
+  .btn-icon {
+    font-size: 1.2rem;
+  }
+  
+  .btn-label {
+    font-size: 0.8rem;
+  }
+  
+  .call-peer-name {
+    font-size: 1.5rem;
+  }
+  
+  #screen-share-video {
+    max-width: 95%;
+  }
+}

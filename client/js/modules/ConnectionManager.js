@@ -10,7 +10,8 @@ export class ConnectionManager {
     this.dataChannels = new Map(); // remoteUsername -> RTCDataChannel
     this.eventHandlers = {
       'message': [],
-      'connectionStateChange': []
+      'connectionStateChange': [],
+      'remoteTrack': []
     };
 
     // Подписка на signaling события
@@ -57,6 +58,12 @@ export class ConnectionManager {
     // ICE connection state changes
     pc.oniceconnectionstatechange = () => {
       console.log(`ICE connection state with ${remoteUsername}:`, pc.iceConnectionState);
+    };
+
+    // Track handling for media streams
+    pc.ontrack = (event) => {
+      console.log(`Received track from ${remoteUsername}:`, event.track.kind);
+      this.emit('remoteTrack', remoteUsername, event.streams[0], event.track);
     };
 
     // Data channel handling
@@ -243,6 +250,34 @@ export class ConnectionManager {
   isDataChannelOpen(remoteUsername) {
     const dataChannel = this.dataChannels.get(remoteUsername);
     return dataChannel && dataChannel.readyState === 'open';
+  }
+
+  /**
+   * Добавляет медиа track к соединению
+   * @param {string} remoteUsername
+   * @param {MediaStreamTrack} track
+   * @param {MediaStream} stream
+   */
+  addTrack(remoteUsername, track, stream) {
+    const pc = this.getConnection(remoteUsername);
+    if (pc) {
+      pc.addTrack(track, stream);
+    }
+  }
+
+  /**
+   * Удаляет медиа track из соединения
+   * @param {string} remoteUsername
+   * @param {MediaStreamTrack} track
+   */
+  removeTrack(remoteUsername, track) {
+    const pc = this.getConnection(remoteUsername);
+    if (pc) {
+      const sender = pc.getSenders().find(s => s.track === track);
+      if (sender) {
+        pc.removeTrack(sender);
+      }
+    }
   }
 
   /**

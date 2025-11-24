@@ -8,6 +8,9 @@ import { SignalingClient } from './modules/SignalingClient.js';
 import { ConnectionManager } from './modules/ConnectionManager.js';
 import { ChatManager } from './modules/ChatManager.js';
 import { UIController } from './modules/UIController.js';
+import { AudioManager } from './modules/AudioManager.js';
+import { CallManager } from './modules/CallManager.js';
+import { CallUI } from './modules/CallUI.js';
 import { SIGNALING_SERVER_URL, ICE_SERVERS } from './config.js';
 
 /**
@@ -47,17 +50,26 @@ async function initApp() {
     // 5. Инициализация ChatManager
     const chatManager = new ChatManager(connectionManager, storageManager);
 
-    // 6. Инициализация UIController
+    // 6. Инициализация AudioManager
+    const audioManager = new AudioManager();
+
+    // 7. Инициализация CallManager
+    const callManager = new CallManager(connectionManager, signalingClient, username);
+
+    // 8. Инициализация CallUI
+    const callUI = new CallUI(callManager, audioManager);
+
+    // 9. Инициализация UIController
     const uiController = new UIController(chatManager, signalingClient, connectionManager);
     uiController.init();
 
-    // 7. Отображение username в UI
+    // 10. Отображение username в UI
     uiController.displayUsername(username);
 
-    // 8. Загрузка существующих чатов
+    // 11. Загрузка существующих чатов
     uiController.updateChatList();
 
-    // 9. Запрос разрешения на уведомления
+    // 12. Запрос разрешения на уведомления
     if ('Notification' in window && Notification.permission === 'default') {
       Notification.requestPermission();
     }
@@ -71,7 +83,10 @@ async function initApp() {
       signalingClient,
       connectionManager,
       chatManager,
-      uiController
+      uiController,
+      audioManager,
+      callManager,
+      callUI
     };
 
   } catch (error) {

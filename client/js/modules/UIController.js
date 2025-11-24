@@ -220,6 +220,12 @@ export class UIController {
       this.updateConnectionStatus(remoteUsername, chat.connectionStatus);
     }
 
+    // Показываем кнопку звонка
+    const callButton = document.getElementById('call-button');
+    if (callButton) {
+      callButton.style.display = 'inline-block';
+    }
+
     // Обновляем список чатов
     this.updateChatList();
 
