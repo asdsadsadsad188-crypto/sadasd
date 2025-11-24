@@ -26,6 +26,28 @@
     gap: 1rem;
 }
 
+.call-button {
+    margin-left: auto;
+    background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.call-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
+}
+
+.call-button:active {
+    transform: translateY(0);
+}
+
 .chat-peer-username {
     font-size: 1.2rem;
     font-weight: 600;

@@ -25,18 +25,10 @@ export class CallUI {
    * Создает кнопку звонка в чате
    */
   createCallButton() {
-    const chatHeader = document.querySelector('.chat-header');
-    if (chatHeader) {
-      const callButton = document.createElement('button');
-      callButton.id = 'call-button';
-      callButton.className = 'call-button';
-      callButton.innerHTML = '📞 Позвонить';
-      callButton.style.display = 'none';
-      
-      const peerInfo = chatHeader.querySelector('.chat-peer-info');
-      if (peerInfo) {
-        peerInfo.appendChild(callButton);
-      }
+    // Кнопка уже существует в HTML, просто проверяем её наличие
+    const callButton = document.getElementById('call-button');
+    if (!callButton) {
+      console.warn('Call button not found in HTML');
     }
   }
 
