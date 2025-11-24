@@ -1,0 +1,17 @@
+{
+  "name": "p2p-messenger-server",
+  "version": "1.0.0",
+  "description": "Signaling server for P2P Web Messenger",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "keywords": ["webrtc", "signaling", "websocket"],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "ws": "^8.14.2",
+    "express": "^4.18.2"
+  }
+}
