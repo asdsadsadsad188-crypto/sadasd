@@ -1,15 +1,7 @@
 {
   "version": 2,
-  "builds": [
-    {
-      "src": "client/**",
-      "use": "@vercel/static"
-    }
-  ],
-  "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "/client/$1"
-    }
-  ]
+  "buildCommand": "echo 'No build needed'",
+  "outputDirectory": "client",
+  "cleanUrls": true,
+  "trailingSlash": false
 }
